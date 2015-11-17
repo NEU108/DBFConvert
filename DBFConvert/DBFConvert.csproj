@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="F_RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_RegisterForm.Designer.cs">
+      <DependentUpon>F_RegisterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\DBFHelper.cs" />
     <Compile Include="Src\ExcelHelper.cs" />
     <Compile Include="F_About.cs">
@@ -108,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="F_Main.resx">
       <DependentUpon>F_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_RegisterForm.resx">
+      <DependentUpon>F_RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F_Service.resx">
       <DependentUpon>F_Service.cs</DependentUpon>
