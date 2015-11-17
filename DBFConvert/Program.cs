@@ -15,6 +15,7 @@ namespace DBFConvert
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new F_Main());
+            //
         }
     }
 }
