@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 
 namespace DBFConvert
 {
-    public class Licence_ComputerInfo
+    class Licence_ComputerInfo
     { 
         //步骤一: 获得CUP序列号和硬盘序列号的实现代码如下:
         //获得CPU的序列号
