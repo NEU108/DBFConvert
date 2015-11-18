@@ -105,21 +105,21 @@
             // 基本设置ToolStripMenuItem
             // 
             this.基本设置ToolStripMenuItem.Name = "基本设置ToolStripMenuItem";
-            this.基本设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.基本设置ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.基本设置ToolStripMenuItem.Text = "基本配置";
             this.基本设置ToolStripMenuItem.Click += new System.EventHandler(this.基本设置ToolStripMenuItem_Click);
             // 
             // 服务配置ToolStripMenuItem
             // 
             this.服务配置ToolStripMenuItem.Name = "服务配置ToolStripMenuItem";
-            this.服务配置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.服务配置ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.服务配置ToolStripMenuItem.Text = "服务配置";
             this.服务配置ToolStripMenuItem.Click += new System.EventHandler(this.服务配置ToolStripMenuItem_Click);
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.退出ToolStripMenuItem.Text = "退出";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
@@ -136,19 +136,20 @@
             // 说明ToolStripMenuItem
             // 
             this.说明ToolStripMenuItem.Name = "说明ToolStripMenuItem";
-            this.说明ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.说明ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.说明ToolStripMenuItem.Text = "说明";
             // 
             // 激活ToolStripMenuItem
             // 
             this.激活ToolStripMenuItem.Name = "激活ToolStripMenuItem";
-            this.激活ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.激活ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.激活ToolStripMenuItem.Text = "激活";
+            this.激活ToolStripMenuItem.Click += new System.EventHandler(this.激活ToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.关于ToolStripMenuItem.Text = "关于";
             this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 

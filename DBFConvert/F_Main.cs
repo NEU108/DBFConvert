@@ -101,5 +101,10 @@ namespace DBFConvert
         {
             this.tssl_status.Text = "当前时间： " + DateTime.Now.ToString();
         }
+
+        private void 激活ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //add by jyz
+        }
     }
 }
