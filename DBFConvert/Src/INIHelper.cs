@@ -18,6 +18,19 @@ namespace DBFConvert
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section, string key, string def, byte[] retVal, int size, string filePath);
 
+
+        //仿照java，单例模式
+        private static INIHelper iniHelper = null;
+        public static INIHelper getInstance(string AFileName) 
+        {
+            if (iniHelper == null)
+                iniHelper = new INIHelper(AFileName);
+            iniHelper.FileName = GetFilePath( AFileName);
+
+            return iniHelper;
+        }
+
+
         //类的构造函数，传递INI文件名
         public INIHelper(string AFileName,string Notice)
         {
@@ -64,6 +77,28 @@ namespace DBFConvert
             }
             //必须是完全路径，不能是相对路径
             FileName = fileInfo.FullName;
+        } 
+
+        private static string GetFilePath(string AFileName) 
+        {
+                        FileInfo fileInfo = new FileInfo(AFileName);
+            //Todo:搞清枚举的用法
+            if ((!fileInfo.Exists))
+            { //|| (FileAttributes.Directory in fileInfo.Attributes))
+                //文件不存在，建立文件
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(AFileName, false, System.Text.Encoding.Default);
+                try
+                {
+                    sw.Write("#表格配置档案");
+                    sw.Close();
+                }
+                catch
+                {
+                    throw (new ApplicationException("Ini文件不存在"));
+                }
+            }
+            //必须是完全路径，不能是相对路径
+            return fileInfo.FullName;
         }
 
         //写INI文件

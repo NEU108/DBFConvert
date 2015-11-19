@@ -30,7 +30,7 @@ namespace DBFConvert
                 this._RecFlag = tmpStr[4];
             }
         }
-
+         
         public string ToString() 
         {
             return _RecTime + "," + _RecStartTime + "," + _RecEndTime + "," + _RecCount + "," + _RecFlag;

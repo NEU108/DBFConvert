@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -95,7 +96,67 @@ namespace DBFConvert
             this.lbl_kjqd.Text = ini.ReadString("服务配置", "开机启动", "");
             this.lbl_auto.Text = ini.ReadString("服务配置", "自动更新", "");
             this.lbl_smjgsj.Text = ini.ReadString("服务配置", "更新间隔", "");
-        }
+
+            //记录信息
+            initRecordData();
+        } 
+
+        private void initRecordData() 
+        {
+            string settingFilePath = System.IO.Directory.GetCurrentDirectory() + "//record.ini";
+            INIHelper iniHelper = new INIHelper(settingFilePath, "####配置信息请勿修改####");
+
+            string recordlaststr = iniHelper.ReadString("DataRecords", "DataRecordsLast", "");
+            string[] recordtotal = recordlaststr.Split(',');
+
+            string recordTotalCount = "";//记录总条数
+            RecordModel recordLastModel = null;//记录最后一条扫描记录
+            string recordErrorStr = "";
+            if (recordtotal.Length > 1)
+            {
+                recordTotalCount = recordtotal[1];
+                recordLastModel = new RecordModel(iniHelper.ReadString("DataRecords", recordtotal[0], ""));
+            }
+            else 
+            {
+                //无 DataRecords 这个节点
+                //添加  并 置数据为空
+                iniHelper.WriteString("DataRecords", "DataRecordsLast", "");
+            }
+              //判断错误信息是否存在
+            if (!iniHelper.ValueExists("ErrorRecords", "ErrorRecord"))
+            {
+                iniHelper.WriteString("ErrorRecords", "ErrorRecord", "");
+            }
+            else
+            {
+                recordErrorStr = iniHelper.ReadString("ErrorRecords", "ErrorRecord", "");
+            }
+
+            if (recordLastModel != null)//记录信息
+            {
+                lbl_scsmsj.Text = recordLastModel._RecTime;
+                lbl_zjts.Text = recordLastModel._RecCount;
+                lbl_zts.Text = recordTotalCount;
+            }
+            else
+            {
+                lbl_scsmsj.Text = "无";
+                lbl_zjts.Text = "无";
+                lbl_zts.Text = "0";
+            }
+
+            if (recordErrorStr.Equals(""))//错误信息
+            {
+                llbl_show_errorlog.Enabled = false;
+                btn_cwcl.Enabled = false;
+            }
+            else 
+            {
+                llbl_show_errorlog.Enabled = true;
+                btn_cwcl.Enabled = true;
+            }
+        } 
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -106,6 +167,12 @@ namespace DBFConvert
         {
             //add by jyz
             (new F_RegisterForm()).ShowDialog();
+        }
+
+        private void llab_show_log_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //add by jyz
+            (new F_ShowLog()).ShowDialog();
         }
     }
 }

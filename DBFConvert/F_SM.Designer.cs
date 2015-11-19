@@ -30,10 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_scan = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_addtodata = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -65,14 +65,15 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "2015-10-14 19:20:20";
             // 
-            // button1
+            // btn_scan
             // 
-            this.button1.Location = new System.Drawing.Point(256, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "扫描";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_scan.Location = new System.Drawing.Point(256, 12);
+            this.btn_scan.Name = "btn_scan";
+            this.btn_scan.Size = new System.Drawing.Size(75, 23);
+            this.btn_scan.TabIndex = 2;
+            this.btn_scan.Text = "扫描";
+            this.btn_scan.UseVisualStyleBackColor = true;
+            this.btn_scan.Click += new System.EventHandler(this.btn_scan_Click);
             // 
             // label3
             // 
@@ -93,14 +94,15 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "新增加10条记录";
             // 
-            // button2
+            // btn_addtodata
             // 
-            this.button2.Location = new System.Drawing.Point(256, 38);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "追加";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_addtodata.Location = new System.Drawing.Point(256, 38);
+            this.btn_addtodata.Name = "btn_addtodata";
+            this.btn_addtodata.Size = new System.Drawing.Size(75, 23);
+            this.btn_addtodata.TabIndex = 2;
+            this.btn_addtodata.Text = "追加";
+            this.btn_addtodata.UseVisualStyleBackColor = true;
+            this.btn_addtodata.Click += new System.EventHandler(this.btn_addtodata_Click);
             // 
             // dataGridView1
             // 
@@ -122,8 +124,8 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btn_addtodata);
+            this.groupBox1.Controls.Add(this.btn_scan);
             this.groupBox1.Location = new System.Drawing.Point(15, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(550, 69);
@@ -190,10 +192,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_scan;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_addtodata;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;

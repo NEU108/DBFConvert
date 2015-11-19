@@ -78,5 +78,10 @@ namespace DBFConvert
                 this.tbx_file.Text = open.FileName;
             }
         }
+
+        private void btn_check_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

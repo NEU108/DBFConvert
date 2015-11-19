@@ -74,6 +74,7 @@
             this.btn_check.TabIndex = 1;
             this.btn_check.Text = "校验";
             this.btn_check.UseVisualStyleBackColor = true;
+            this.btn_check.Click += new System.EventHandler(this.btn_check_Click);
             // 
             // label2
             // 

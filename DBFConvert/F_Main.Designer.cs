@@ -136,20 +136,20 @@
             // 说明ToolStripMenuItem
             // 
             this.说明ToolStripMenuItem.Name = "说明ToolStripMenuItem";
-            this.说明ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.说明ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.说明ToolStripMenuItem.Text = "说明";
             // 
             // 激活ToolStripMenuItem
             // 
             this.激活ToolStripMenuItem.Name = "激活ToolStripMenuItem";
-            this.激活ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.激活ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.激活ToolStripMenuItem.Text = "激活";
             this.激活ToolStripMenuItem.Click += new System.EventHandler(this.激活ToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.关于ToolStripMenuItem.Text = "关于";
             this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
@@ -214,6 +214,7 @@
             this.llab_show_log.TabIndex = 7;
             this.llab_show_log.TabStop = true;
             this.llab_show_log.Text = "查看日志";
+            this.llab_show_log.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llab_show_log_LinkClicked);
             // 
             // lbl_dqsmzt
             // 

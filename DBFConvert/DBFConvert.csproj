@@ -69,6 +69,12 @@
     <Compile Include="F_RegisterForm.Designer.cs">
       <DependentUpon>F_RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="F_ShowLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_ShowLog.Designer.cs">
+      <DependentUpon>F_ShowLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\DBFHelper.cs" />
     <Compile Include="Src\ExcelHelper.cs" />
     <Compile Include="F_About.cs">
@@ -101,6 +107,8 @@
     <Compile Include="F_SM.Designer.cs">
       <DependentUpon>F_SM.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\FileScan.cs" />
+    <Compile Include="Src\FileWatch.cs" />
     <Compile Include="Src\INIHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +126,9 @@
     <EmbeddedResource Include="F_RegisterForm.resx">
       <DependentUpon>F_RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="F_ShowLog.resx">
+      <DependentUpon>F_ShowLog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F_Service.resx">
       <DependentUpon>F_Service.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,6 +144,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
