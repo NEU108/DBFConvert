@@ -105,6 +105,7 @@ namespace DBFConvert
         private void 激活ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //add by jyz
+            (new F_RegisterForm()).ShowDialog();
         }
     }
 }
