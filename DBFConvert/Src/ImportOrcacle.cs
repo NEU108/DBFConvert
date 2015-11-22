@@ -16,6 +16,9 @@ namespace DBFConvert
         private OracleDataAdapter da;
         private OracleCommandBuilder ocb;
 
+        /// <summary>
+        /// 默认构造函数
+        /// </summary>
         public ImportOrcacle()
         {
         }
