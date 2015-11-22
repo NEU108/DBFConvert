@@ -108,7 +108,6 @@
     <Compile Include="F_SM.Designer.cs">
       <DependentUpon>F_SM.cs</DependentUpon>
     </Compile>
-    <Compile Include="Src\FileScan.cs" />
     <Compile Include="Src\FileWatchHelper.cs" />
     <Compile Include="Src\INIHelper.cs" />
     <Compile Include="Program.cs" />
