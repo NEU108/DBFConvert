@@ -39,6 +39,7 @@
             // 
             // testnotifyIcon
             // 
+            this.testnotifyIcon.ContextMenuStrip = this.testcontextMenuStrip;
             this.testnotifyIcon.Text = "notifyIcon1";
             this.testnotifyIcon.Visible = true;
             this.testnotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.testnotifyIcon_MouseDoubleClick);

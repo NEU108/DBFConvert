@@ -129,6 +129,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\Lincense.cs" />
     <Compile Include="Src\RecordModel.cs" />
+    <Compile Include="T_ServiceTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="T_ServiceTest.Designer.cs">
+      <DependentUpon>T_ServiceTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="T_TestAutoRun.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="T_ServiceTest.resx">
+      <DependentUpon>T_ServiceTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="T_TestAutoRun.resx">
       <DependentUpon>T_TestAutoRun.cs</DependentUpon>
     </EmbeddedResource>
