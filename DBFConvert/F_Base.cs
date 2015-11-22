@@ -81,7 +81,8 @@ namespace DBFConvert
 
         private void btn_check_Click(object sender, EventArgs e)
         {
-
+            //"C:\\Users\\jerrychia\\Desktop\\Data\\RESULTS.DBF"  
+            tbx_file.Text = tbx_file.Text.Substring(tbx_file.Text.LastIndexOf('\\')+1, tbx_file.Text.Length - tbx_file.Text.LastIndexOf('\\') -1);
         }
     }
 }
