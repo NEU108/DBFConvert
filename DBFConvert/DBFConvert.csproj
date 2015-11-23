@@ -90,6 +90,7 @@
     <Compile Include="F_ShowLog.Designer.cs">
       <DependentUpon>F_ShowLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\AutoConvertClass.cs" />
     <Compile Include="Src\Common.cs" />
     <Compile Include="Src\DBFHelper.cs" />
     <Compile Include="Src\ExcelHelper.cs" />

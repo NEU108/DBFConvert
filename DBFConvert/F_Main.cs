@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBFConvert.Src;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -101,6 +102,7 @@ namespace DBFConvert
             initRecordData();
         } 
 
+
         private void initRecordData() 
         {
             string settingFilePath = System.IO.Directory.GetCurrentDirectory() + "//record.ini";
@@ -173,6 +175,30 @@ namespace DBFConvert
         {
             //add by jyz
             (new F_ShowLog()).ShowDialog();
+        } 
+
+        private void InitAutoService() 
+        { 
+            string fileStr = INIHelper.getInstance(Common.settingFilePath).ReadString("基本配置", "扫描文件目录", "");
+            //表名
+            string tableName = System.IO.Path.GetFileNameWithoutExtension(fileStr);
+            //路径
+            string filePath = System.IO.Path.GetDirectoryName(fileStr); 
+            FileWatchHelper fileWatchHelper = FileWatchHelper.getInstance(filePath, tableName);
+            fileWatchHelper.InitWatchHelper();
+            fileWatchHelper.fileChangedEvent += new FileWatchHelper.FileChangedEvent(DBFileChangedEvent);
+
+            //FileWatchHelper.fileChangedEvent += new FileWatchHelper.FileChangedEvent(null);
         }
+
+        private void DBFileChangedEvent(object sender,System.IO.FileSystemEventArgs e) 
+        {
+            AutoConvertClass.getInstance().Run();
+        }
+
+        private void btn_autoexec_Click(object sender, EventArgs e)
+        {
+            AutoConvertClass.getInstance().Run();
+        } 
     }
 }

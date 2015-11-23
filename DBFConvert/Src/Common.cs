@@ -7,6 +7,12 @@ namespace DBFConvert.Src
 {
     public static class Common
     {
+
+
+        public static string settingFilePath = System.IO.Directory.GetCurrentDirectory() + "//setting.ini";
+        public static string recordFilePath = System.IO.Directory.GetCurrentDirectory() + "//record.ini";
+
+
         // SetAutoRun(Application.ExecutablePath, true);  //设置自动启动当前程序
         // SetAutoRun(Application.ExecutablePath, false);  //取消自动启动 
 

@@ -23,12 +23,12 @@ namespace DBFConvert.Src
 
             fileWatchPath = filepath;
             fileWatchFile = filter;
-            InitWatchHelper();
+            //InitWatchHelper();
 
             return fileWatchHelper;
         }
 
-        private static void InitWatchHelper() 
+        public void InitWatchHelper() 
         {
             m_Watcher.Path = fileWatchPath;
             m_Watcher.Filter = fileWatchFile;
@@ -85,17 +85,17 @@ namespace DBFConvert.Src
             m_Watcher = null;
         }
 
-        public delegate void FileChangedEvent(System.IO.FileSystemEventArgs e);
-        static FileChangedEvent fileChangedEvent;
+        public delegate void FileChangedEvent(object sender,System.IO.FileSystemEventArgs e);
+        public FileChangedEvent fileChangedEvent;
 
         /// <summary>
         /// 监听事件触发的方法
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void m_Watcher_Changed(object sender, System.IO.FileSystemEventArgs e)
+        private void m_Watcher_Changed(object sender, System.IO.FileSystemEventArgs e)
         {
-            fileChangedEvent(e);
+            this.fileChangedEvent(sender,e);
             /////这里写你监视的函数
         }
         /// <summary>
@@ -103,7 +103,7 @@ namespace DBFConvert.Src
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void m_Watcher_Resumed(object sender, RenamedEventArgs e)
+        private void m_Watcher_Resumed(object sender, RenamedEventArgs e)
         {
             //这里不用写
         }

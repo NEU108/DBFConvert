@@ -74,6 +74,7 @@
             this.lbl_ts_port = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btn_autoexec = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -363,6 +364,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_autoexec);
             this.groupBox1.Controls.Add(this.lbl_ts_error);
             this.groupBox1.Controls.Add(this.btn_cwcl);
             this.groupBox1.Controls.Add(this.llbl_show_errorlog);
@@ -517,6 +519,16 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btn_autoexec
+            // 
+            this.btn_autoexec.Location = new System.Drawing.Point(458, 24);
+            this.btn_autoexec.Name = "btn_autoexec";
+            this.btn_autoexec.Size = new System.Drawing.Size(75, 23);
+            this.btn_autoexec.TabIndex = 16;
+            this.btn_autoexec.Text = "自动执行";
+            this.btn_autoexec.UseVisualStyleBackColor = true;
+            this.btn_autoexec.Click += new System.EventHandler(this.btn_autoexec_Click);
+            // 
             // F_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -596,5 +608,6 @@
         private System.Windows.Forms.Label lbl_ts_port;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btn_autoexec;
     }
 }
