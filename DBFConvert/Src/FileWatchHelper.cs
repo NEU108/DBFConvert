@@ -10,8 +10,8 @@ namespace DBFConvert.Src
 
         public static System.IO.FileSystemWatcher m_Watcher = new System.IO.FileSystemWatcher();
 
-        private static string fileWatchPath = @"D:\tianchi\";
-        private static string fileWatchFile = "gd_line_desc.txt";
+        private static string fileWatchPath = @"";
+        private static string fileWatchFile = "";
         private static bool _isWatch = false;
 
 

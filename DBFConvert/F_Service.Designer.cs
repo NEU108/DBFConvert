@@ -87,6 +87,7 @@
             this.cbox_kjqd.TabIndex = 3;
             this.cbox_kjqd.Text = "是否开机启动";
             this.cbox_kjqd.UseVisualStyleBackColor = true;
+            this.cbox_kjqd.CheckedChanged += new System.EventHandler(this.cbox_kjqd_CheckedChanged);
             // 
             // btn_save
             // 

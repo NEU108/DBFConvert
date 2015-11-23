@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBFConvert.Src;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -24,8 +25,8 @@ namespace DBFConvert
 
         private void initRecordInfo()
         {
-            string settingFilePath = System.IO.Directory.GetCurrentDirectory() + "//record.ini";
-            INIHelper iniHelper = new INIHelper(settingFilePath, "配置信息请勿修改");
+             
+            INIHelper iniHelper = new INIHelper(Common.recordFilePath, "配置信息请勿修改");
 
             List<RecordModel> recordList = new List<RecordModel>();
            

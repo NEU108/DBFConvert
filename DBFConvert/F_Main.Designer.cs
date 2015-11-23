@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Main));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.基本设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +62,7 @@
             this.lbl_dbs = new System.Windows.Forms.Label();
             this.lbl_ts_dbs = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_autoexec = new System.Windows.Forms.Button();
             this.lbl_ts_error = new System.Windows.Forms.Label();
             this.btn_cwcl = new System.Windows.Forms.Button();
             this.llbl_show_errorlog = new System.Windows.Forms.LinkLabel();
@@ -74,12 +76,17 @@
             this.lbl_ts_port = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btn_autoexec = new System.Windows.Forms.Button();
+            this.testcontextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testnotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.testcontextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -139,6 +146,7 @@
             this.说明ToolStripMenuItem.Name = "说明ToolStripMenuItem";
             this.说明ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.说明ToolStripMenuItem.Text = "说明";
+            this.说明ToolStripMenuItem.Click += new System.EventHandler(this.说明ToolStripMenuItem_Click);
             // 
             // 激活ToolStripMenuItem
             // 
@@ -279,7 +287,7 @@
             // lbl_ts_smjgsj
             // 
             this.lbl_ts_smjgsj.AutoSize = true;
-            this.lbl_ts_smjgsj.Location = new System.Drawing.Point(280, 23);
+            this.lbl_ts_smjgsj.Location = new System.Drawing.Point(335, 23);
             this.lbl_ts_smjgsj.Name = "lbl_ts_smjgsj";
             this.lbl_ts_smjgsj.Size = new System.Drawing.Size(89, 12);
             this.lbl_ts_smjgsj.TabIndex = 9;
@@ -289,7 +297,7 @@
             // 
             this.lbl_smjgsj.AutoSize = true;
             this.lbl_smjgsj.ForeColor = System.Drawing.Color.Red;
-            this.lbl_smjgsj.Location = new System.Drawing.Point(375, 23);
+            this.lbl_smjgsj.Location = new System.Drawing.Point(430, 23);
             this.lbl_smjgsj.Name = "lbl_smjgsj";
             this.lbl_smjgsj.Size = new System.Drawing.Size(17, 12);
             this.lbl_smjgsj.TabIndex = 8;
@@ -322,6 +330,7 @@
             this.btn_sdzx.TabIndex = 10;
             this.btn_sdzx.Text = "手动执行";
             this.btn_sdzx.UseVisualStyleBackColor = true;
+            this.btn_sdzx.Visible = false;
             this.btn_sdzx.Click += new System.EventHandler(this.btn_sdzx_Click);
             // 
             // lbl_smwj
@@ -385,6 +394,16 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "扫描状态";
+            // 
+            // btn_autoexec
+            // 
+            this.btn_autoexec.Location = new System.Drawing.Point(458, 24);
+            this.btn_autoexec.Name = "btn_autoexec";
+            this.btn_autoexec.Size = new System.Drawing.Size(75, 23);
+            this.btn_autoexec.TabIndex = 16;
+            this.btn_autoexec.Text = "手动执行";
+            this.btn_autoexec.UseVisualStyleBackColor = true;
+            this.btn_autoexec.Click += new System.EventHandler(this.btn_autoexec_Click);
             // 
             // lbl_ts_error
             // 
@@ -519,15 +538,43 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btn_autoexec
+            // testcontextMenuStrip
             // 
-            this.btn_autoexec.Location = new System.Drawing.Point(458, 24);
-            this.btn_autoexec.Name = "btn_autoexec";
-            this.btn_autoexec.Size = new System.Drawing.Size(75, 23);
-            this.btn_autoexec.TabIndex = 16;
-            this.btn_autoexec.Text = "自动执行";
-            this.btn_autoexec.UseVisualStyleBackColor = true;
-            this.btn_autoexec.Click += new System.EventHandler(this.btn_autoexec_Click);
+            this.testcontextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showToolStripMenuItem,
+            this.hideToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.testcontextMenuStrip.Name = "testcontextMenuStrip";
+            this.testcontextMenuStrip.Size = new System.Drawing.Size(101, 70);
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.showToolStripMenuItem.Text = "显示";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
+            // 
+            // hideToolStripMenuItem
+            // 
+            this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
+            this.hideToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.hideToolStripMenuItem.Text = "隐藏";
+            this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.exitToolStripMenuItem.Text = "退出";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // testnotifyIcon
+            // 
+            this.testnotifyIcon.ContextMenuStrip = this.testcontextMenuStrip;
+            this.testnotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("testnotifyIcon.Icon")));
+            this.testnotifyIcon.Text = "DBFConvert";
+            this.testnotifyIcon.Visible = true;
+            this.testnotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.testnotifyIcon_MouseDoubleClick);
             // 
             // F_Main
             // 
@@ -540,11 +587,14 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "F_Main";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "F_Main";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_Main_FormClosing);
             this.Load += new System.EventHandler(this.F_Main_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -556,6 +606,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.testcontextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -609,5 +660,10 @@
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btn_autoexec;
+        private System.Windows.Forms.ContextMenuStrip testcontextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.NotifyIcon testnotifyIcon;
     }
 }

@@ -71,6 +71,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Src\System.Data.OracleClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
@@ -125,11 +129,13 @@
       <DependentUpon>F_SM.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\FileWatchHelper.cs" />
+    <Compile Include="Src\ImportOrcacle.cs" />
     <Compile Include="Src\INIHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\Lincense.cs" />
     <Compile Include="Src\RecordModel.cs" />
+    <Compile Include="Src\RegModel.cs" />
     <Compile Include="T_ServiceTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,8 +196,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dbf.ico" />
     <Content Include="Lib\Aspose.Cells.dll" />
-    <Content Include="Src\icon.ico" />
+    <Content Include="Src\System.Data.OracleClient.dll" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

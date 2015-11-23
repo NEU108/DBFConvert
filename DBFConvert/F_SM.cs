@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBFConvert.Src;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,9 +10,8 @@ using System.Windows.Forms;
 namespace DBFConvert
 {
     public partial class F_SM : Form
-    { 
-        private static string  settingFilePath = System.IO.Directory.GetCurrentDirectory()+ "//setting.ini";
-        string DBFPath = INIHelper.getInstance(settingFilePath).ReadString("基本配置", "扫描文件目录", "");
+    {  
+        string DBFPath = INIHelper.getInstance(Common .settingFilePath).ReadString("基本配置", "扫描文件目录", "");
 
         public F_SM()
         {

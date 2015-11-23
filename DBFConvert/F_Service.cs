@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBFConvert.Src;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,10 +16,13 @@ namespace DBFConvert
             InitializeComponent();
         }
 
+
+        public string isAutoRunWatch = "none";
+
         private void btn_save_Click(object sender, EventArgs e)
         {
-            string settingFilePath = System.IO.Directory.GetCurrentDirectory() + "//setting.ini";
-            INIHelper ini = new INIHelper(settingFilePath, "配置信息请勿修改");
+             
+            INIHelper ini = new INIHelper(Common.settingFilePath, "配置信息请勿修改");
             try
             {
                 string kjqd = string.Empty;
@@ -39,6 +43,12 @@ namespace DBFConvert
                 else
                 {
                     zdgx = "否";
+                }
+                string setting_zdgx = ini.ReadString("服务配置", "自动更新", "");
+                if (!setting_zdgx.Contains(zdgx)) 
+                {
+                    if (zdgx == "是") { isAutoRunWatch = "yes"; }
+                    else { isAutoRunWatch = "no"; }
                 }
 
                 string jg = string.Empty;
@@ -86,9 +96,8 @@ namespace DBFConvert
         }
 
         private void iniInfo()
-        {
-            string settingFilePath = System.IO.Directory.GetCurrentDirectory() + "//setting.ini";
-            INIHelper ini = new INIHelper(settingFilePath, "配置信息请勿修改");
+        { 
+            INIHelper ini = new INIHelper(Common.settingFilePath, "配置信息请勿修改");
 
             //服务信息
             string kjqd = ini.ReadString("服务配置", "开机启动", "");
@@ -125,6 +134,19 @@ namespace DBFConvert
                 this.cbox_jg.SelectedIndex = 2;
             }
 
+        }
+
+        private void cbox_kjqd_CheckedChanged(object sender, EventArgs e)
+        {
+            string startup = Application.ExecutablePath;
+            if (cbox_kjqd.Checked)
+            {
+                Common.SetAutoRun(startup, true);
+            }
+            else 
+            {
+                Common.SetAutoRun(startup, false);
+            }
         }
     }
 }

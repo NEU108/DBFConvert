@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBFConvert.Src;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,6 +40,7 @@ namespace DBFConvert
 
         private void btn_close1_Click(object sender, EventArgs e)
         {
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
 
@@ -76,15 +78,7 @@ namespace DBFConvert
 
 
 
-        class RegModel 
-        {
-            public string _installTime="";
-            public string _code = "";
-            public string _activeTime = "";
-            public string _type = "";
-            public string _IncName = "";
-            public string _key = "";
-        }
+     
          
         private string regPath="software\\DBFConvert\\DBFConvertSet\\";
         private RegModel GetRegisterInfo() 
@@ -149,11 +143,7 @@ namespace DBFConvert
                 localRegKey.Close();
                 userRegKey.Close();
             }
-
-
-
-            
-
+             
            return regModel;
         }
 
@@ -206,7 +196,7 @@ namespace DBFConvert
             {
                 Microsoft.Win32.RegistryKey localRegKey = Microsoft.Win32.Registry.LocalMachine;
                 Microsoft.Win32.RegistryKey userRegKey = Microsoft.Win32.Registry.CurrentUser;
-
+                bool flag = false;
                 try
                 {
                     //DBFConvert\\DBFConvertSet\\
@@ -219,17 +209,25 @@ namespace DBFConvert
                     userRegKey.SetValue("ActivityTime", DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"));
                     userRegKey.SetValue("Type", "Person");
                     userRegKey.SetValue(Lincense.GetMd5("Person"), txt_key.Text);
-
+                    flag = true;
+                    
                 }
                 catch (Exception e)
-                { 
+                {
+                    MessageBox.Show("请用管理员权限执行本程序！");
                     throw;
                 }
                 finally 
                 {
                     localRegKey.Close();
                     userRegKey.Close();
-                } 
+                }
+                if (flag) 
+                {
+                    MessageBox.Show("注册成功，请重启应用程序！");
+                    this.Close();
+
+                }
             } 
             else
             {
@@ -240,7 +238,9 @@ namespace DBFConvert
 
         #endregion
 
-  
-
+        private void F_RegisterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
     }
 }

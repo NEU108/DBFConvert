@@ -16,15 +16,36 @@ namespace DBFConvert
         public F_Main()
         {
             InitializeComponent();
+
+
+            checkIsRegister(); 
+        } 
+
+        private void checkIsRegister() 
+        {
+            if (!Program.isRegister) {
+                Program .isRegister = Common.CheckIsRegister();
+            }
         }
 
         private void 基本设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             F_Base b = new F_Base();
+            b.settingInfoSaveEvent += new F_Base.SettingInfoSaveEvent(mySettingInfoSaveEvent);
             if(b.ShowDialog() == DialogResult.OK)
             {
                 initInfo();
             }
+        }
+
+        private void mySettingInfoSaveEvent() 
+        {
+            if (fileWatchHelper != null && fileWatchHelper.IsWatch) 
+            {
+                fileWatchHelper.DisableWatch();
+            }
+            INIHelper.getInstance(Common.settingFilePath).WriteString("服务配置", "自动更新", "否");
+            this.lbl_auto.Text = "否";
         }
 
         private void 服务配置ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -34,12 +55,28 @@ namespace DBFConvert
             {
                 initInfo();
             }
+            
+            if (f.isAutoRunWatch == "yes")
+            {
+                InitAutoService();//此处添加初始化AutoService的方法 
+                if (fileWatchHelper != null )//&& !fileWatchHelper.IsWatch)
+                {
+                    fileWatchHelper.EnableWatch();
+                }
+            }
+            else if (f.isAutoRunWatch == "no") 
+            {
+                if (fileWatchHelper != null && fileWatchHelper.IsWatch)
+                {
+                    fileWatchHelper.DisableWatch();
+                }
+            }
         }
 
         private void btn_sdzx_Click(object sender, EventArgs e)
         {
-            F_SM s = new F_SM();
-            s.ShowDialog();
+            //F_SM s = new F_SM();
+            //s.ShowDialog();
         }
 
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,13 +87,12 @@ namespace DBFConvert
 
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();      
+            exitToolStripMenuItem_Click(sender, e);
         }
         
         private void F_Main_Load(object sender, EventArgs e)
-        {
-            string settingFilePath = System.IO.Directory.GetCurrentDirectory()+ "//setting.ini";
-            INIHelper ini = new INIHelper(settingFilePath,"配置信息请勿修改");
+        { 
+            INIHelper ini = new INIHelper(Common.settingFilePath,"配置信息请勿修改");
 
             ////基本信息
             //ini.WriteString("基本配置", "扫描文件目录", "D://file/123.dbf");
@@ -76,6 +112,37 @@ namespace DBFConvert
             this.timer1.Start();
 
             initInfo();
+
+            initViews();
+            //初始化------自动运行
+            //
+            InitAutoService();
+            string isAuto = INIHelper.getInstance(Common.settingFilePath).ReadString("服务配置", "自动更新", "");
+            if (isAuto.Contains("是"))
+            {
+                if (fileWatchHelper != null)
+                {
+                    fileWatchHelper.EnableWatch();
+                }
+            }
+        }
+
+        private void initViews()
+        {
+            if (!Program.isRegister)
+            {
+                if ((new F_RegisterForm()).ShowDialog() == DialogResult.OK)
+                {
+                    if (!Program.isRegister)
+                    {
+                        ////----------
+                        testcontextMenuStrip.Visible = false;
+                        this.Close();
+                        this.Dispose();
+                        Application.Exit();
+                    }
+                }
+            } 
         }
 
         /// <summary>
@@ -83,8 +150,8 @@ namespace DBFConvert
         /// </summary>
         private void initInfo()
         {
-            string settingFilePath = System.IO.Directory.GetCurrentDirectory() + "//setting.ini";
-            INIHelper ini = new INIHelper(settingFilePath, "配置信息请勿修改");
+             
+            INIHelper ini = new INIHelper(Common.settingFilePath, "配置信息请勿修改");
 
             //基本信息
             this.lbl_smwj.Text = ini.ReadString("基本配置", "扫描文件目录", "");
@@ -104,9 +171,8 @@ namespace DBFConvert
 
 
         private void initRecordData() 
-        {
-            string settingFilePath = System.IO.Directory.GetCurrentDirectory() + "//record.ini";
-            INIHelper iniHelper = new INIHelper(settingFilePath, "####配置信息请勿修改####");
+        { 
+            INIHelper iniHelper = new INIHelper(Common.recordFilePath, "####配置信息请勿修改####");
 
             string recordlaststr = iniHelper.ReadString("DataRecords", "DataRecordsLast", "");
             string[] recordtotal = recordlaststr.Split(',');
@@ -175,30 +241,98 @@ namespace DBFConvert
         {
             //add by jyz
             (new F_ShowLog()).ShowDialog();
-        } 
+        }
+
+
+        #region AutoService
+        
+       
+
+        private FileWatchHelper fileWatchHelper = null;
 
         private void InitAutoService() 
-        { 
-            string fileStr = INIHelper.getInstance(Common.settingFilePath).ReadString("基本配置", "扫描文件目录", "");
-            //表名
-            string tableName = System.IO.Path.GetFileNameWithoutExtension(fileStr);
-            //路径
-            string filePath = System.IO.Path.GetDirectoryName(fileStr); 
-            FileWatchHelper fileWatchHelper = FileWatchHelper.getInstance(filePath, tableName);
-            fileWatchHelper.InitWatchHelper();
-            fileWatchHelper.fileChangedEvent += new FileWatchHelper.FileChangedEvent(DBFileChangedEvent);
+        {
+            //string fileStr = INIHelper.getInstance(Common.settingFilePath).ReadString("基本配置", "扫描文件目录", "");
+            string fileStr = INIHelper.getInstance(Common.settingFilePath).ReadString("SetStatus", "DBFPath", "");
+            string oraclepath = INIHelper.getInstance(Common.settingFilePath).ReadString("SetStatus", "OraclePath", "");
 
-            //FileWatchHelper.fileChangedEvent += new FileWatchHelper.FileChangedEvent(null);
+            if (fileStr != "" && oraclepath != "")
+            {
+                //表名
+                string tableName = System.IO.Path.GetFileNameWithoutExtension(fileStr);
+                //路径
+                string filePath = System.IO.Path.GetDirectoryName(fileStr);
+
+                this.fileWatchHelper = FileWatchHelper.getInstance(filePath, tableName);
+                fileWatchHelper.InitWatchHelper();
+                fileWatchHelper.fileChangedEvent += new FileWatchHelper.FileChangedEvent(DBFileChangedEvent);
+            }
+            else 
+            {
+                this.lbl_auto.Text = "请配置参数";
+            }
         }
 
         private void DBFileChangedEvent(object sender,System.IO.FileSystemEventArgs e) 
         {
             AutoConvertClass.getInstance().Run();
         }
-
+        
         private void btn_autoexec_Click(object sender, EventArgs e)
         {
             AutoConvertClass.getInstance().Run();
+        }
+
+        #endregion  
+
+        #region AutoExe
+       
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.Activate();
+        }
+
+        private void hideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("你确定要退出终端服务程序吗？", "确认", MessageBoxButtons.OKCancel,
+            MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+            {
+                testcontextMenuStrip.Visible = false;
+                this.Close();
+                this.Dispose();
+                Application.Exit();
+            }       
+        }
+
+        private void testnotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // 左键双击显示
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                this.Activate();
+            }
+        }
+
+        private void F_Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //取消关闭逻辑
+            e.Cancel = true;
+            this.Hide();
+        }
+
+        private void 说明ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("功能未开发！");
         } 
+        #endregion 
     }
 }

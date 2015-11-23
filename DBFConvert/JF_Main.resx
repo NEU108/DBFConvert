@@ -117,54 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="_RecTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="_RecStartTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="_RecEndTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="_RecCount.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="_RecFlag.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="_RecName.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>137, 17</value>
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>143, 17</value>
   </metadata>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>258, 17</value>
+    <value>256, 17</value>
   </metadata>
-  <metadata name="testcontextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>197, 56</value>
-  </metadata>
-  <metadata name="testnotifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>377, 56</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="testnotifyIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAEAICAQAAEABADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAgAIAAAAAAAAAAAAAEAAAAAAA
-        AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAICAgAAAAP8AAP8AAAD//wD/AAAA/wD/AP//
-        AAD///8AAAAAAAAAAJmZAAmZkAkAAAAAAAAAAACQAJAJAAkJAAAAAAAAAAAAkAAJCQAJCQAAAAAAAAAA
-        AJAACQkACQkAAAAAAA+7u/CQAAkJmZAJmZkAAA+7u7u7kAAJCQAJCQAAAAALu7u7u5AAkAkACQkAAAAA
-        C7AAu7uZmQAJmZAJmZkAAAuwALu7u7u7sAC7AAAAAAALsPu7u7+7u7sAuwAAAAAAC7u7uwAAD7u7v7sA
-        AAAAAAC7u78AAAALu7u7AAAAAAALu7sAjMzMwPu7vwAAAAAAu7u7AMzMzMAPu7sAAAAAD7u7uwDMzMzA
-        ALu78AAAAAu7sPu8zMzMzPu/u7sAAAD7u/APvMzMzMy7/7u78AAAu78AALzMzMzMu/D7u7AAD7uwAAAP
-        zMzMywAAD7uwAAu7sAAAAMzMzM8AAAC7sAALuwAAAAAPfMvwAAAAu78AD7sAAAAA+7u7sAAAAPu/AAC7
-        AAAAD7u7+7vwAAD7sAAA+7u7u7uwAAALu7u7u7AAAAu7u7u7AAAAD/u7u7sAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//Dhv//3br//966///euv/gXoYPgB
-        66/4Aduv+cA4YPnABz/5AAM/+A+AP/wP4D/4MBA/8DAYP+AwHB/hAAAPwYAAB8PAAQeH4A+Hh/APx4/4
-        H8OP8B/Dz+AHx8AH4AfgD+AP/////////////////////////////////////w==
-</value>
-  </data>
-  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAEAICAQAAEABADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAgAIAAAAAAAAAAAAAEAAAAAAA
-        AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAICAgAAAAP8AAP8AAAD//wD/AAAA/wD/AP//
-        AAD///8AAAAAAAAAAJmZAAmZkAkAAAAAAAAAAACQAJAJAAkJAAAAAAAAAAAAkAAJCQAJCQAAAAAAAAAA
-        AJAACQkACQkAAAAAAA+7u/CQAAkJmZAJmZkAAA+7u7u7kAAJCQAJCQAAAAALu7u7u5AAkAkACQkAAAAA
-        C7AAu7uZmQAJmZAJmZkAAAuwALu7u7u7sAC7AAAAAAALsPu7u7+7u7sAuwAAAAAAC7u7uwAAD7u7v7sA
-        AAAAAAC7u78AAAALu7u7AAAAAAALu7sAjMzMwPu7vwAAAAAAu7u7AMzMzMAPu7sAAAAAD7u7uwDMzMzA
-        ALu78AAAAAu7sPu8zMzMzPu/u7sAAAD7u/APvMzMzMy7/7u78AAAu78AALzMzMzMu/D7u7AAD7uwAAAP
-        zMzMywAAD7uwAAu7sAAAAMzMzM8AAAC7sAALuwAAAAAPfMvwAAAAu78AD7sAAAAA+7u7sAAAAPu/AAC7
-        AAAAD7u7+7vwAAD7sAAA+7u7u7uwAAALu7u7u7AAAAu7u7u7AAAAD/u7u7sAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//Dhv//3br//966///euv/gXoYPgB
-        66/4Aduv+cA4YPnABz/5AAM/+A+AP/wP4D/4MBA/8DAYP+AwHB/hAAAPwYAAB8PAAQeH4A+Hh/APx4/4
-        H8OP8B/Dz+AHx8AH4AfgD+AP/////////////////////////////////////w==
-</value>
-  </data>
 </root>

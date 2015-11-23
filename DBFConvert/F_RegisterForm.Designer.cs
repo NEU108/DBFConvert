@@ -311,6 +311,7 @@
             this.Name = "F_RegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "F_RegisterForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_RegisterForm_FormClosing);
             this.Load += new System.EventHandler(this.F_RegisterForm_Load);
             this.gb_noregister.ResumeLayout(false);
             this.gb_noregister.PerformLayout();
