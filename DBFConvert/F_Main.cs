@@ -24,7 +24,25 @@ namespace DBFConvert
         private void checkIsRegister() 
         {
             if (!Program.isRegister) {
-                Program .isRegister = Common.CheckIsRegister();
+                //-1:注册表错误（安装不正确，建议重新安装）0:未注册，1，已注册
+                if(Common.CheckIsRegister() ==1)
+                {
+                     Program .isRegister = true;
+                }else if(Common.CheckIsRegister() ==0)
+                {
+                    //未注册
+                }
+                else{
+                    if (MessageBox.Show("您的软件安装不正确，请尝试卸载后重新安装！") == System.Windows.Forms.DialogResult.OK)
+                    {
+                        Common.RegItemAddOrigan();
+                        //退出程序
+                        testcontextMenuStrip.Visible = false;
+                        this.Close();
+                        this.Dispose();
+                        Application.Exit();
+                    }
+                } 
             }
         }
 
@@ -135,7 +153,7 @@ namespace DBFConvert
                 {
                     if (!Program.isRegister)
                     {
-                        ////----------
+                        ////----------退出
                         testcontextMenuStrip.Visible = false;
                         this.Close();
                         this.Dispose();

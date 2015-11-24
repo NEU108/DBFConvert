@@ -75,10 +75,18 @@ namespace DBFConvert.Src
              RegModel regModel = new RegModel();
           
             Microsoft.Win32.RegistryKey localRegKey = Microsoft.Win32.Registry.LocalMachine;
-              
+            Microsoft.Win32.RegistryKey userRegKey = Microsoft.Win32.Registry.CurrentUser; 
             try
             { 
                 string regPath = "software\\DBFConvert\\DBFConvertSet\\";
+
+                //安装时间问题
+                if (localRegKey.OpenSubKey("DBFConvert").OpenSubKey("DBFConvertSet").GetValue("InstallTime").ToString().Trim() == "")
+                {
+                    localRegKey.OpenSubKey("DBFConvert").OpenSubKey("DBFConvertSet", true).SetValue("InstallTime", DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"));
+                    userRegKey.OpenSubKey("DBFConvert").OpenSubKey("DBFConvertSet", true).SetValue("InstallTime", DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"));
+                }
+                regModel._installTime = localRegKey.OpenSubKey("DBFConvert").OpenSubKey("DBFConvertSet").GetValue("InstallTime").ToString();
 
                 string[] subkeys1 = (localRegKey.OpenSubKey(regPath).GetSubKeyNames()); 
 
@@ -109,13 +117,15 @@ namespace DBFConvert.Src
                                 regModel._IncName = "Person";
                                 regModel._key = userRegSetCodeKey.GetValue(item).ToString();
                             }
-                        }
-                        return regModel;
-                    } 
+                      } 
+                }
+                return regModel;
             }
             catch (Exception e)
-            { 
-                throw;
+            {
+                //throw;
+                //edit by sjl
+                //throw e;
             }
             finally
             {
@@ -124,7 +134,36 @@ namespace DBFConvert.Src
             return null;
         }
 
-        public static bool CheckIsRegister()
+        public static bool RegItemAddOrigan() 
+        {
+            bool flag = false;
+            Microsoft.Win32.RegistryKey localRegKey = Microsoft.Win32.Registry.LocalMachine;
+            Microsoft.Win32.RegistryKey userRegKey = Microsoft.Win32.Registry.CurrentUser;
+            try
+            {
+                //"software\\DBFConvert\\DBFConvertSet\\";
+                localRegKey= localRegKey.CreateSubKey("DBFConvert").CreateSubKey("DBFConvertSet");
+                userRegKey = userRegKey.CreateSubKey("DBFConvert").CreateSubKey("DBFConvertSet");
+                localRegKey.SetValue("InstallTime",DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"));
+                userRegKey.SetValue("InstallTime", DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"));
+                flag = true;
+            }
+            catch (Exception e)
+            { 
+            }
+            finally 
+            {
+                localRegKey.Close();
+                userRegKey.Close();
+            }
+            return flag;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>-1:注册表错误（安装不正确，建议重新安装）0:未注册，1，已注册</returns>
+        public static int CheckIsRegister()
         { 
             /*
              * 检测方式：
@@ -132,27 +171,30 @@ namespace DBFConvert.Src
              * 
              */ 
             RegModel reg = CheckIsRegister1();
-
-            bool flag = false;
-            if (reg._type.Equals("Person"))
+            if (reg == null) 
             {
-                string code = reg._code;
-                string user = reg._IncName;
-                string key = reg._key;
-
-                if (Lincense.getInstance().GetCode2(code).Contains(key))
+                return -1;
+            }
+            if (reg._code != null && reg._type !=null) 
+            {
+                if (reg._type.Equals("Person"))
                 {
-                    flag = true;
-                    return flag;
+                    string code = reg._code;
+                    string user = reg._IncName;
+                    string key = reg._key;
+
+                    if (Lincense.getInstance().GetCode2(code).Contains(key))
+                    { 
+                        return 1;
+                    }
+
                 }
+                else//这个是 批量注册码
+                {
 
+                }
             }
-            else//这个是 批量注册码
-            {
-
-            }
-
-            return flag;
+            return 0;
         } 
     }
 }

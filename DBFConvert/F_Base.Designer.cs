@@ -153,7 +153,7 @@
             // 
             // tbx_uid
             // 
-            this.tbx_uid.Location = new System.Drawing.Point(276, 22);
+            this.tbx_uid.Location = new System.Drawing.Point(276, -5);
             this.tbx_uid.Name = "tbx_uid";
             this.tbx_uid.Size = new System.Drawing.Size(123, 21);
             this.tbx_uid.TabIndex = 4;
@@ -200,7 +200,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(219, 25);
+            this.label3.Location = new System.Drawing.Point(219, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 3;
