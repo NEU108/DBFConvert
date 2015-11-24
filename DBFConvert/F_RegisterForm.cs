@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Security.Permissions;
 using System.Text;
 using System.Windows.Forms;
 
@@ -29,8 +30,7 @@ namespace DBFConvert
             {
                 ShowUnRegisteredInfo(regModel);
             }
-        }
-
+        } 
 
 
         private void btn_register_Click(object sender, EventArgs e)
@@ -48,8 +48,7 @@ namespace DBFConvert
         #region 获取注册信息
 
         private void ShowRegisteredInfo(RegModel reg) 
-        {
-
+        { 
             lab_status.Text = "已注册";
 
             gb_noregister.Visible = false;
@@ -81,14 +80,14 @@ namespace DBFConvert
      
          
         private string regPath="software\\DBFConvert\\DBFConvertSet\\";
+
+        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
+        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
         private RegModel GetRegisterInfo() 
         { 
-            RegModel regModel = new RegModel();
-          
-
+            RegModel regModel = new RegModel(); 
             Microsoft.Win32.RegistryKey localRegKey = Microsoft.Win32.Registry.LocalMachine;
-            Microsoft.Win32.RegistryKey userRegKey = Microsoft.Win32.Registry.CurrentUser;
-
+            Microsoft.Win32.RegistryKey userRegKey = Microsoft.Win32.Registry.CurrentUser; 
             try
             {
                 regModel._installTime = localRegKey.OpenSubKey(regPath).GetValue("InstallTime").ToString();
@@ -130,8 +129,10 @@ namespace DBFConvert
                 }
                 //////把机器码加进去 
                 ClearReg(localRegKey, userRegKey);
-                localRegKey.OpenSubKey(regPath).CreateSubKey(Lincense.getInstance().CreateCode());
-                userRegKey.OpenSubKey(regPath).CreateSubKey(Lincense.getInstance().CreateCode());
+                string jiqicode = Lincense.getInstance().CreateCode();
+                regModel._code = jiqicode;
+                localRegKey.OpenSubKey(regPath, true).CreateSubKey(jiqicode);
+                userRegKey.OpenSubKey(regPath, true).CreateSubKey(jiqicode);
             }
             catch (Exception e)
             {
@@ -147,14 +148,16 @@ namespace DBFConvert
            return regModel;
         }
 
+        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
+        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
         private void ClearReg(Microsoft.Win32.RegistryKey localRegKey, Microsoft.Win32.RegistryKey userRegKey) 
         {
-            string[] subkeys = localRegKey.OpenSubKey(regPath).GetSubKeyNames();
+            string[] subkeys = localRegKey.OpenSubKey(regPath,true).GetSubKeyNames();
             foreach (string key in subkeys)
             {
                 localRegKey.DeleteSubKeyTree(key);
             }
-            subkeys = userRegKey.OpenSubKey(regPath).GetSubKeyNames();
+            subkeys = userRegKey.OpenSubKey(regPath,true).GetSubKeyNames();
             foreach (string key in subkeys)
             {
                 localRegKey.DeleteSubKeyTree(key);
@@ -190,6 +193,9 @@ namespace DBFConvert
             return flag;
         }
 
+
+        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
+        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
         private void RegisterSoft() 
         {
             if(txt_key.Text.Contains( Lincense.getInstance().GetCode2(lab_machinecode.Text) ))

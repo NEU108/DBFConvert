@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using System.Text;
 
 namespace DBFConvert.Src
@@ -69,7 +70,8 @@ namespace DBFConvert.Src
         }
 
 
-
+        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
+        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
         private static RegModel CheckIsRegister1() 
         {          
              RegModel regModel = new RegModel();
@@ -80,13 +82,17 @@ namespace DBFConvert.Src
             { 
                 string regPath = "software\\DBFConvert\\DBFConvertSet\\";
 
-                //安装时间问题
-                if (localRegKey.OpenSubKey("DBFConvert").OpenSubKey("DBFConvertSet").GetValue("InstallTime").ToString().Trim() == "")
-                {
-                    localRegKey.OpenSubKey("DBFConvert").OpenSubKey("DBFConvertSet", true).SetValue("InstallTime", DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"));
-                    userRegKey.OpenSubKey("DBFConvert").OpenSubKey("DBFConvertSet", true).SetValue("InstallTime", DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"));
-                }
-                regModel._installTime = localRegKey.OpenSubKey("DBFConvert").OpenSubKey("DBFConvertSet").GetValue("InstallTime").ToString();
+
+                
+                    //安装时间问题
+                    if (localRegKey.OpenSubKey(regPath).GetValue("InstallTime").ToString().Trim() == "")
+                    {
+                        localRegKey.OpenSubKey(regPath, true).SetValue("InstallTime", DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"));
+                        userRegKey.OpenSubKey(regPath, true).SetValue("InstallTime", DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss"));
+                    }
+                    regModel._installTime = localRegKey.OpenSubKey(regPath).GetValue("InstallTime").ToString();
+                 
+                
 
                 string[] subkeys1 = (localRegKey.OpenSubKey(regPath).GetSubKeyNames()); 
 
@@ -134,6 +140,9 @@ namespace DBFConvert.Src
             return null;
         }
 
+         
+        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
+        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
         public static bool RegItemAddOrigan() 
         {
             bool flag = false;

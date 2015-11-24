@@ -25,15 +25,17 @@ namespace DBFConvert
         {
             if (!Program.isRegister) {
                 //-1:注册表错误（安装不正确，建议重新安装）0:未注册，1，已注册
-                if(Common.CheckIsRegister() ==1)
+                int tmp= Common.CheckIsRegister();
+                if (tmp == 1)
                 {
                      Program .isRegister = true;
-                }else if(Common.CheckIsRegister() ==0)
+                }
+                else if (tmp == 0)
                 {
                     //未注册
                 }
                 else{
-                    if (MessageBox.Show("您的软件安装不正确，请尝试卸载后重新安装！") == System.Windows.Forms.DialogResult.OK)
+                    if (MessageBox.Show("请您使用管理员权限运行本程序，若管理员不对，请卸载后重新安装！") == System.Windows.Forms.DialogResult.OK)
                     {
                         Common.RegItemAddOrigan();
                         //退出程序
