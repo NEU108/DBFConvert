@@ -70,8 +70,8 @@ namespace DBFConvert.Src
         }
 
 
-        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
-        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
+        //[RegistryPermissionAttribute(SecurityAction.PermitOnly, Read = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
+        //[RegistryPermissionAttribute(SecurityAction.PermitOnly, Read = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
         private static RegModel CheckIsRegister1() 
         {          
              RegModel regModel = new RegModel();
@@ -141,8 +141,8 @@ namespace DBFConvert.Src
         }
 
          
-        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
-        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
+        //[RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
+        //[RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
         public static bool RegItemAddOrigan() 
         {
             bool flag = false;

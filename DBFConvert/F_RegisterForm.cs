@@ -81,8 +81,8 @@ namespace DBFConvert
          
         private string regPath="software\\DBFConvert\\DBFConvertSet\\";
 
-        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
-        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
+        //[RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
+        //[RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
         private RegModel GetRegisterInfo() 
         { 
             RegModel regModel = new RegModel(); 
@@ -148,8 +148,8 @@ namespace DBFConvert
            return regModel;
         }
 
-        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
-        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
+        //[RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
+        //[RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
         private void ClearReg(Microsoft.Win32.RegistryKey localRegKey, Microsoft.Win32.RegistryKey userRegKey) 
         {
             string[] subkeys = localRegKey.OpenSubKey(regPath,true).GetSubKeyNames();
@@ -194,8 +194,8 @@ namespace DBFConvert
         }
 
 
-        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
-        [RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
+        //[RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_CURRENT_USER\SOFTWARE\DBFConvert")]
+        //[RegistryPermissionAttribute(SecurityAction.PermitOnly, Write = @"HKEY_LOCAL_MACHINE\SOFTWARE\DBFConvert")]
         private void RegisterSoft() 
         {
             if(txt_key.Text.Contains( Lincense.getInstance().GetCode2(lab_machinecode.Text) ))
